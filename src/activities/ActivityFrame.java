@@ -8,5 +8,8 @@ public class ActivityFrame extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
+        setResizable(false);
+        setFocusable(true);
+        setLocationRelativeTo(null);
     }
 }
