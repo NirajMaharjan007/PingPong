@@ -9,10 +9,10 @@ public class ActivityFrame extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-
-        add(new OperationPanel());
         setAlwaysOnTop(true);
         setFocusable(true);
+        add(new OperationPanel());
+        pack();
         setLocationRelativeTo(null);
     }
 }
