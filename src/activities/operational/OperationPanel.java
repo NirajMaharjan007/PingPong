@@ -11,8 +11,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     public final static int SIZE = 20;
 
-    Timer timer;
-
     public static int ballPosX = 5 * SIZE, ballPosY = 5 * SIZE;
 
     private int ballDirX = -5, ballDirY = -4;
@@ -20,6 +18,8 @@ public class OperationPanel extends JPanel implements ActionListener {
     private int paddleY = 30;
 
     private final int paddleWidth = 10, paddleHeight = 8 * SIZE;
+
+    Timer timer;
 
     public OperationPanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HIGHT));
@@ -122,6 +122,7 @@ public class OperationPanel extends JPanel implements ActionListener {
             pack();
 
             control.addKeyListener(this);
+
         }
 
         @Override
