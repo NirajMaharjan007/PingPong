@@ -55,25 +55,25 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     protected void checkCollision() {
+        Rectangle ball = new Rectangle(ballPosX, ballPosY, SIZE, SIZE);
+        Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth, paddleHeight);
+
         if (paddleY >= 490)
             paddleY = 500;
 
         if (paddleY <= 0)
             paddleY = 0;
+
+        if (paddle.intersects(ball))
+            ballDirX = -ballDirX;
+        // ballDirY = -ballDirY;
+
     }
 
     protected void moveBall() {
         // System.out.println("Ball POSITION X: " + ballPosX + ", Y: " + ballPosY);
         ballPosX += ballDirX;
         ballPosY += ballDirY;
-
-        Rectangle ball = new Rectangle(ballPosX, ballPosY, SIZE, SIZE);
-        Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth, paddleHeight);
-
-        if (paddle.intersects(ball)) {
-            ballDirX = -ballDirX;
-            // ballDirY = -ballDirY;
-        }
 
         if (ballPosX < 0) {
             ballDirX = -ballDirX;
