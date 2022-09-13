@@ -34,6 +34,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
         g.drawLine(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
+
         drawBall(g);
         drawPaddle(g);
         checkCollision();
@@ -52,7 +53,6 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     protected void drawPaddle(Graphics g) {
-        System.out.println("Paddle Y: " + paddleY);
         g.setColor(Color.green);
         g.fillRoundRect(2 * SIZE, paddleY, paddleWidth, paddleHeight, 15, 15);
 
@@ -83,7 +83,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         if (paddle2.intersects(ball))
             ballDirX = -ballDirX;
-
     }
 
     protected void moveBall() {
@@ -91,21 +90,17 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosX += ballDirX;
         ballPosY += ballDirY;
 
-        if (ballPosX < 0) {
-            ballDirX = -ballDirX;
-        }
+        if (ballPosX < 0)
+            run = false;
 
-        if (ballPosY < 0) {
+        if (ballPosX > (SCREEN_HEIGHT - SIZE))
+            run = false;
+
+        if (ballPosY < 0)
             ballDirY = -ballDirY;
-        }
 
-        if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            ballDirX = -ballDirX;
-        }
-
-        if (ballPosY > (SCREEN_WIDTH - SIZE)) {
+        if (ballPosY > (SCREEN_WIDTH - SIZE))
             ballDirY = -ballDirY;
-        }
 
     }
 
@@ -114,6 +109,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (run) {
             moveBall();
         }
+
         repaint();
     }
 
