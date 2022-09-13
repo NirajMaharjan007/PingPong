@@ -51,15 +51,15 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     protected void drawPaddle(Graphics g) {
         g.setColor(Color.green);
-        g.fillRect(2 * SIZE, paddleY, paddleWidth, paddleHeight);
+        g.fillRoundRect(2 * SIZE, paddleY, paddleWidth, paddleHeight, 10, 10);
     }
 
     protected void checkCollision() {
         Rectangle ball = new Rectangle(ballPosX, ballPosY, SIZE, SIZE);
         Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth, paddleHeight);
 
-        if (paddleY >= 490)
-            paddleY = 500;
+        if (paddleY > 450)
+            paddleY = 445;
 
         if (paddleY <= 0)
             paddleY = 0;
@@ -107,6 +107,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         JLabel label = new JLabel("", JLabel.CENTER);
 
         public Controller() {
+            setTitle("Controller");
             setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocation(100, 200);
@@ -119,9 +120,10 @@ public class OperationPanel extends JPanel implements ActionListener {
             panel.add(label);
 
             add(panel);
-            pack();
 
             control.addKeyListener(this);
+
+            setSize(new Dimension(200, 150));
 
         }
 
