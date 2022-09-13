@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class OperationPanel extends JPanel implements ActionListener {
 
-    private final int SCREEN_WIDTH = 600, SCREEN_HIGHT = 600;
+    private final int SCREEN_WIDTH = 600, SCREEN_HEIGHT = 600;
     private boolean run = false;
 
     public final static int SIZE = 20;
@@ -15,14 +15,14 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     private int ballDirX = -5, ballDirY = -4;
 
-    private int paddleY = 30;
+    private int paddleY = 30, paddleY2 = 50;
 
     private final int paddleWidth = 10, paddleHeight = 8 * SIZE;
 
     Timer timer;
 
     public OperationPanel() {
-        setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HIGHT));
+        setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setBackground(Color.BLACK);
         start();
         setLayout(new GridLayout());
@@ -32,6 +32,8 @@ public class OperationPanel extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.drawLine(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT);
         drawBall(g);
         drawPaddle(g);
         checkCollision();
@@ -50,23 +52,37 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     protected void drawPaddle(Graphics g) {
+        System.out.println("Paddle Y: " + paddleY);
         g.setColor(Color.green);
-        g.fillRoundRect(2 * SIZE, paddleY, paddleWidth, paddleHeight, 10, 10);
+        g.fillRoundRect(2 * SIZE, paddleY, paddleWidth, paddleHeight, 15, 15);
+
+        g.setColor(Color.BLUE);
+        g.fillRoundRect(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight, 15, 15);
     }
 
     protected void checkCollision() {
+        int maxY = 440, minY = 0;
         Rectangle ball = new Rectangle(ballPosX, ballPosY, SIZE, SIZE);
         Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth, paddleHeight);
+        Rectangle paddle2 = new Rectangle(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight);
 
-        if (paddleY > 450)
-            paddleY = 445;
+        if (paddleY > maxY)
+            paddleY = maxY;
 
-        if (paddleY <= 0)
-            paddleY = 0;
+        if (paddleY < minY)
+            paddleY = minY;
+
+        if (paddleY2 > maxY)
+            paddleY2 = maxY;
+
+        if (paddleY2 < minY)
+            paddleY2 = minY;
 
         if (paddle.intersects(ball))
             ballDirX = -ballDirX;
-        // ballDirY = -ballDirY;
+
+        if (paddle2.intersects(ball))
+            ballDirX = -ballDirX;
 
     }
 
@@ -83,7 +99,7 @@ public class OperationPanel extends JPanel implements ActionListener {
             ballDirY = -ballDirY;
         }
 
-        if (ballPosX > (SCREEN_HIGHT - SIZE)) {
+        if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
             ballDirX = -ballDirX;
         }
 
@@ -129,7 +145,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("Paddle Y: " + paddleY);
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_UP:
                     label.setText("UP");
@@ -140,6 +155,18 @@ public class OperationPanel extends JPanel implements ActionListener {
                 case KeyEvent.VK_DOWN:
                     label.setText("Down");
                     paddleY += SIZE;
+                    repaint();
+                    break;
+
+                case KeyEvent.VK_W:
+                    label.setText("UP");
+                    paddleY2 -= SIZE;
+                    repaint();
+                    break;
+
+                case KeyEvent.VK_S:
+                    label.setText("Down");
+                    paddleY2 += SIZE;
                     repaint();
                     break;
             }
