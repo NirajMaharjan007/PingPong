@@ -21,12 +21,15 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     Timer timer;
 
+    Score score;
+
     public OperationPanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setBackground(Color.BLACK);
         start();
         setLayout(new GridLayout());
         new Controller();
+        score = new Score(SCREEN_WIDTH, SCREEN_HEIGHT);
     }
 
     @Override
@@ -37,6 +40,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         drawBall(g);
         drawPaddle(g);
+        score.drawScore(g);
         checkCollision();
     }
 
@@ -48,7 +52,7 @@ public class OperationPanel extends JPanel implements ActionListener {
     protected void start() {
         run = true;
 
-        timer = new Timer(7, this);
+        timer = new Timer(15, this);
         timer.start();
     }
 
