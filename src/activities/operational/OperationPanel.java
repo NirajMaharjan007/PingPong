@@ -123,15 +123,9 @@ public class OperationPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (run) {
             moveBall();
-        } else {
-            System.out.println("Running time: " + run);
         }
 
         repaint();
-    }
-
-    public void reset() {
-        System.out.println("Reset");
     }
 
     class Controller extends JFrame implements KeyListener {
@@ -189,7 +183,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
                 case KeyEvent.VK_ENTER:
                     run = true;
-                    reset();
             }
         }
 
