@@ -3,7 +3,11 @@ package activities.operational;
 import java.awt.*;
 
 public class Score {
-    private int score1, score2, screen_width, screen_height, size = OperationPanel.SIZE;
+    private int screen_width, screen_height, size = OperationPanel.SIZE;
+
+    public static int score1, score2;
+
+    protected int ballPosX;
 
     public Score() {
         score2 = score1 = 0;
@@ -26,5 +30,6 @@ public class Score {
 
         g.drawString(str1, screen_width / 10, screen_height / 20);
         g.drawString(str2, screen_width - (12 * size), screen_height / 20);
+
     }
 }

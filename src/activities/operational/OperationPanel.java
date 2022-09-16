@@ -41,6 +41,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         drawBall(g);
         drawPaddle(g);
         score.drawScore(g);
+
         checkCollision();
     }
 
@@ -87,6 +88,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         if (paddle2.intersects(ball))
             ballDirX = -ballDirX;
+
     }
 
     protected void moveBall() {
@@ -94,11 +96,20 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosX += ballDirX;
         ballPosY += ballDirY;
 
-        if (ballPosX < 0)
-            run = false;
+        int score1 = Score.score1;
+        int score2 = Score.score2;
 
-        if (ballPosX > (SCREEN_HEIGHT - SIZE))
+        System.out.println(score1 + " and " + score2);
+
+        if (ballPosX < 0) {
+            score1++;
             run = false;
+        }
+
+        if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
+            score2++;
+            run = false;
+        }
 
         if (ballPosY < 0)
             ballDirY = -ballDirY;
