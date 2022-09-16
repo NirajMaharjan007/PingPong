@@ -53,7 +53,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     protected void start() {
         run = true;
-
         timer = new Timer(15, this);
         timer.start();
     }
