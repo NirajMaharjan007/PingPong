@@ -25,7 +25,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 - no seperate two inputs 
 
 ## Solved Problems
-- collision worlk properly but has litter bugs 
+- collision work properly but has litter bugs 
 - Playable
 
 ## This is a Ping-Pong Java Test
