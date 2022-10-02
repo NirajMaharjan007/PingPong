@@ -26,7 +26,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 - has Bugs while colliding Paddles
 
 ## Solved Problems
-- collision work properly but has litter bugs 
+- collision works
 - Playable
 - can Restart if out of bounds
 
