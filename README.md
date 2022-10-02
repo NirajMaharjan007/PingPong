@@ -28,9 +28,10 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 ## Solved Problems
 - collision work properly but has litter bugs 
 - Playable
-- can Restart if out of bounds
+- can Restart if out of bounds and Space to continue
 
 ## This is a Ping-Pong Java Test
 
 This is Java test for Educational Purposes.
+
     - Thank You
