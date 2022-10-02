@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class FrameMenuBar extends MenuBar implements ActionListener {
+public class FrameMenuBar extends JMenuBar implements ActionListener {
 
     MenuItem settings;
     Menu menu;
