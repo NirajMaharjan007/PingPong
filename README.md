@@ -33,5 +33,4 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 ## This is a Ping-Pong Java Test
 
 This is Java test for Educational Purposes.
-
     - Thank You
