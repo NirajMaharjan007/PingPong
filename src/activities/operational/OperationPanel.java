@@ -74,13 +74,12 @@ public class OperationPanel extends JPanel implements ActionListener {
     protected void start() {
         run = true;
         timer.setRepeats(true);
-        timer.start();
+        timer.stop();
     }
 
     protected void drawPaddle(Graphics g) {
         g.setColor(Color.green);
         g.fillRect(2 * SIZE, paddleY, paddleWidth, paddleHeight);
-
         g.setColor(Color.BLUE);
         g.fillRect(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight);
     }
@@ -128,9 +127,8 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (paddleY2 < minY)
             paddleY2 = minY;
 
-        if (paddle.intersects(ball) || ball.intersects(paddle)) {
+        if (paddle.intersects(ball) || ball.intersects(paddle))
             ballDirX = -ballDirX;
-        }
 
         if (paddle2.intersects(ball) || ball.intersects(paddle2))
             ballDirX = -ballDirX;
@@ -160,7 +158,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         if (ballPosY > (SCREEN_WIDTH - SIZE))
             ballDirY = -ballDirY;
-
     }
 
     private void restart() {
