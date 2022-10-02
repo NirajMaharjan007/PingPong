@@ -1,17 +1,15 @@
 package activities.operational;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class FrameMenuBar extends JMenuBar implements ActionListener {
-
-    MenuItem settings;
-    Menu menu;
+    JMenuItem settings;
+    JMenu menu;
 
     public FrameMenuBar() {
-        menu = new Menu("Menu");
-        settings = new MenuItem("Settings");
+        menu = new JMenu("Menu");
+        settings = new JMenuItem("Settings");
 
         menu.add(settings);
         add(menu);
