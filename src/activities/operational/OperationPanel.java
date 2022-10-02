@@ -68,16 +68,15 @@ public class OperationPanel extends JPanel implements ActionListener {
     protected void start() {
         run = true;
         timer = new Timer(15, this);
-        timer.setRepeats(true);
         timer.start();
     }
 
     protected void drawPaddle(Graphics g) {
         g.setColor(Color.green);
-        g.fillRoundRect(2 * SIZE, paddleY, paddleWidth, paddleHeight, 15, 15);
+        g.fillRect(2 * SIZE, paddleY, paddleWidth, paddleHeight);
 
         g.setColor(Color.BLUE);
-        g.fillRoundRect(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight, 15, 15);
+        g.fillRect(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight);
     }
 
     protected void checkCollision() {
@@ -113,13 +112,13 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (ballPosX < 0) {
             run = false;
             restart();
-            score1++;
+            score2++;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
             run = false;
             restart();
-            score2++;
+            score1++;
         }
 
         if (ballPosY < 0)
@@ -131,11 +130,17 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     private void restart() {
-        ballPosX = SCREEN_HEIGHT / 2;
-        ballPosY = SCREEN_WIDTH / 2;
+        if (ballPosX < 0) {
+            ballPosX = SCREEN_HEIGHT / 2;
+            ballPosY = SCREEN_WIDTH / 2;
+        }
+
+        if (ballPosX > SCREEN_WIDTH - SIZE) {
+            ballPosX = (SCREEN_HEIGHT / 2) - SIZE;
+            ballPosY = SCREEN_WIDTH / 2;
+        }
         ballDirX = -ballDirX;
         ballDirY = -ballDirY;
-        // run = true;
     }
 
     @Override
@@ -175,34 +180,41 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
+
             switch (e.getKeyCode()) {
+                case KeyEvent.VK_SPACE:
+                    label.setText("Continue");
+                    run = true;
+                    break;
+
                 case KeyEvent.VK_UP:
                     label.setText("UP");
                     paddleY2 -= SIZE;
-                    repaint();
+                    // repaint();
                     break;
 
                 case KeyEvent.VK_DOWN:
                     label.setText("Down");
                     paddleY2 += SIZE;
-                    repaint();
+                    // repaint();
                     break;
 
                 case KeyEvent.VK_W:
                     label.setText("UP");
                     paddleY -= SIZE;
-                    repaint();
+                    // repaint();
                     break;
 
                 case KeyEvent.VK_S:
                     label.setText("Down");
                     paddleY += SIZE;
-                    repaint();
+                    // repaint();
                     break;
 
                 case KeyEvent.VK_ENTER:
                     run = true;
             }
+            repaint();
         }
 
         @Override
