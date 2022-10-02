@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class OperationPanel extends JPanel implements ActionListener {
-
     private final int SCREEN_WIDTH = 600, SCREEN_HEIGHT = 600;
     private boolean run = false;
 
@@ -19,7 +18,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     private final int paddleWidth = 10, paddleHeight = 8 * SIZE;
 
-    Timer timer;
+    Timer timer = new Timer(15, this);
 
     private int score1 = 0,
             score2 = 0;
@@ -44,10 +43,13 @@ public class OperationPanel extends JPanel implements ActionListener {
         drawScore(g);
 
         checkCollision();
+
+        if (!run)
+            gameOver((Graphics2D) g);
     }
 
     private void drawScore(Graphics g) {
-        Font font = new Font("Helvetica", Font.BOLD, 20);
+        Font font = new Font("Arial", Font.BOLD, 20);
         g.setFont(font);
         g.setColor(Color.RED);
 
@@ -58,6 +60,10 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         g.drawString(str1, SCREEN_WIDTH / 10, SCREEN_HEIGHT / 20);
         g.drawString(str2, SCREEN_WIDTH - (12 * SIZE), SCREEN_HEIGHT / 20);
+
+        if (score2 == 5 || score1 == 5) {
+            run = false;
+        }
     }
 
     protected void drawBall(Graphics g) {
@@ -67,7 +73,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     protected void start() {
         run = true;
-        timer = new Timer(15, this);
+        timer.setRepeats(true);
         timer.start();
     }
 
@@ -77,6 +83,31 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         g.setColor(Color.BLUE);
         g.fillRect(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight);
+    }
+
+    private void gameOver(Graphics2D g) {
+        String str = "Game Over";
+        Font font = new Font("Helvetica", Font.BOLD, 45);
+
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        g.setFont(font);
+        g.setColor(Color.RED);
+        g.drawString(str, 180, SCREEN_HEIGHT / 2);
+
+        if (score1 > score2) {
+            String title = "Player One Wins!";
+            font = new Font("Helvetica", Font.PLAIN, 24);
+            g.setFont(font);
+            g.setColor(Color.RED);
+            g.drawString(title, 210, (SCREEN_HEIGHT + 4 * SIZE) / 2);
+        } else {
+            String title = "Player Two Wins!";
+            font = new Font("Helvetica", Font.PLAIN, 24);
+            g.setFont(font);
+            g.setColor(Color.RED);
+            g.drawString(title, 210, (SCREEN_HEIGHT + 4 * SIZE) / 2);
+        }
     }
 
     protected void checkCollision() {
@@ -97,8 +128,9 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (paddleY2 < minY)
             paddleY2 = minY;
 
-        if (paddle.intersects(ball) || ball.intersects(paddle))
+        if (paddle.intersects(ball) || ball.intersects(paddle)) {
             ballDirX = -ballDirX;
+        }
 
         if (paddle2.intersects(ball) || ball.intersects(paddle2))
             ballDirX = -ballDirX;
@@ -110,13 +142,15 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosY += ballDirY;
 
         if (ballPosX < 0) {
-            run = false;
+            // run = false;
+            timer.stop();
             restart();
             score2++;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            run = false;
+            // run = false;
+            timer.stop();
             restart();
             score1++;
         }
@@ -140,7 +174,6 @@ public class OperationPanel extends JPanel implements ActionListener {
             ballPosY = SCREEN_WIDTH / 2;
         }
         ballDirX = -ballDirX;
-        ballDirY = -ballDirY;
     }
 
     @Override
@@ -159,9 +192,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         public Controller() {
             setTitle("Controller");
-            setVisible(true);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLocation(100, 200);
 
             control.setEditable(false);
 
@@ -175,6 +206,8 @@ public class OperationPanel extends JPanel implements ActionListener {
             control.addKeyListener(this);
 
             setSize(new Dimension(200, 150));
+            setVisible(true);
+            setLocation(200, 200);
 
         }
 
@@ -184,7 +217,7 @@ public class OperationPanel extends JPanel implements ActionListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_SPACE:
                     label.setText("Continue");
-                    run = true;
+                    timer.start();
                     break;
 
                 case KeyEvent.VK_UP:
