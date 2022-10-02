@@ -21,7 +21,8 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     Timer timer;
 
-    Score score;
+    private int score1 = 0,
+            score2 = 0;
 
     public OperationPanel() {
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -29,8 +30,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         start();
         setLayout(new GridLayout());
         new Controller();
-        score = new Score(SCREEN_WIDTH, SCREEN_HEIGHT);
-        score.getBallPositionX(ballPosX);
+
     }
 
     @Override
@@ -41,9 +41,23 @@ public class OperationPanel extends JPanel implements ActionListener {
 
         drawBall(g);
         drawPaddle(g);
-        score.drawScore(g);
+        drawScore(g);
 
         checkCollision();
+    }
+
+    private void drawScore(Graphics g) {
+        Font font = new Font("Helvetica", Font.BOLD, 20);
+        g.setFont(font);
+        g.setColor(Color.RED);
+
+        String str1, str2;
+
+        str1 = "Player One Score: " + score1;
+        str2 = "Player Two Score: " + score2;
+
+        g.drawString(str1, SCREEN_WIDTH / 10, SCREEN_HEIGHT / 20);
+        g.drawString(str2, SCREEN_WIDTH - (12 * SIZE), SCREEN_HEIGHT / 20);
     }
 
     protected void drawBall(Graphics g) {
@@ -97,15 +111,15 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosY += ballDirY;
 
         if (ballPosX < 0) {
-            // run = false;
+            run = false;
             restart();
-
+            score1++;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            // run = false;
+            run = false;
             restart();
-
+            score2++;
         }
 
         if (ballPosY < 0)
