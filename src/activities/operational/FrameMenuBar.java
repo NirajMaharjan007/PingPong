@@ -10,9 +10,10 @@ public class FrameMenuBar extends JMenuBar implements ActionListener {
     public FrameMenuBar() {
         menu = new JMenu("Menu");
         settings = new JMenuItem("Settings");
-
         menu.add(settings);
         add(menu);
+
+        settings.addActionListener(this);
     }
 
     @Override
@@ -21,6 +22,9 @@ public class FrameMenuBar extends JMenuBar implements ActionListener {
         if (e.getSource() == settings) {
             dialog.setTitle("Settings");
             dialog.add(new ShowPanel());
+            dialog.pack();
+            dialog.setVisible(true);
+            // dialog.setLocationRelativeTo(settings);
         }
     }
 
