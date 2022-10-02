@@ -5,9 +5,9 @@ import java.awt.*;
 public class Score {
     private int screen_width, screen_height, size = OperationPanel.SIZE;
 
-    public static int score1, score2;
-
     protected int ballPosX;
+
+    public static int score1, score2;
 
     public Score() {
         score2 = score1 = 0;
@@ -16,6 +16,10 @@ public class Score {
     public Score(int width, int height) {
         this.screen_width = width;
         this.screen_height = height;
+    }
+
+    public void getBallPositonX(int ballPosX) {
+        this.ballPosX = ballPosX;
     }
 
     public void drawScore(Graphics g) {
@@ -30,6 +34,13 @@ public class Score {
 
         g.drawString(str1, screen_width / 10, screen_height / 20);
         g.drawString(str2, screen_width - (12 * size), screen_height / 20);
+    }
 
+    public void setScore() {
+        if (ballPosX < 0)
+            score1++;
+
+        else if (ballPosX > (screen_height - size))
+            score2++;
     }
 }

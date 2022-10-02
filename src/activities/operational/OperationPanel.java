@@ -30,6 +30,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout());
         new Controller();
         score = new Score(SCREEN_WIDTH, SCREEN_HEIGHT);
+        score.getBallPositonX(ballPosX);
     }
 
     @Override
@@ -52,7 +53,6 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     protected void start() {
         run = true;
-
         timer = new Timer(15, this);
         timer.setRepeats(run);
         timer.start();
@@ -97,18 +97,13 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosX += ballDirX;
         ballPosY += ballDirY;
 
-        int score1 = Score.score1;
-        int score2 = Score.score2;
-
-        System.out.println(score1 + " and " + score2);
+        // System.out.println(score1 + " and " + score2);
 
         if (ballPosX < 0) {
-            score1++;
             run = false;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            score2++;
             run = false;
         }
 
@@ -181,6 +176,9 @@ public class OperationPanel extends JPanel implements ActionListener {
                     paddleY += SIZE;
                     repaint();
                     break;
+
+                case KeyEvent.VK_ENTER:
+                    run = true;
             }
         }
 
