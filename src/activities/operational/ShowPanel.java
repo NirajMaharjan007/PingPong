@@ -5,12 +5,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ShowPanel extends JPanel implements ActionListener {
-    private JButton done, cancel;
+    private JButton done;
     private JTextField player1, player2, winning_score;
 
     public ShowPanel() {
         done = new JButton("Done");
-        cancel = new JButton("Cancel");
 
         player1 = new JTextField(10);
         player2 = new JTextField(10);
@@ -37,7 +36,6 @@ public class ShowPanel extends JPanel implements ActionListener {
         panel.add(player2);
 
         panel.add(done);
-        panel.add(cancel);
 
         add(panel);
 
@@ -47,6 +45,7 @@ public class ShowPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == done) {
+            JOptionPane.showMessageDialog(done, "Setting is done now");
         }
     }
 }
