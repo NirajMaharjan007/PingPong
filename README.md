@@ -23,6 +23,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 - If run == false, then doesn't works
 - requires to re run the programme
 - no separate two inputs 
+- has Bugs while colliding Paddles
 
 ## Solved Problems
 - collision work properly but has litter bugs 
