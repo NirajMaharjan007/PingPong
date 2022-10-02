@@ -54,6 +54,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         run = true;
 
         timer = new Timer(15, this);
+        timer.setRepeats(run);
         timer.start();
     }
 
@@ -159,25 +160,25 @@ public class OperationPanel extends JPanel implements ActionListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_UP:
                     label.setText("UP");
-                    paddleY -= SIZE;
+                    paddleY2 -= SIZE;
                     repaint();
                     break;
 
                 case KeyEvent.VK_DOWN:
                     label.setText("Down");
-                    paddleY += SIZE;
+                    paddleY2 += SIZE;
                     repaint();
                     break;
 
                 case KeyEvent.VK_W:
                     label.setText("UP");
-                    paddleY2 -= SIZE;
+                    paddleY -= SIZE;
                     repaint();
                     break;
 
                 case KeyEvent.VK_S:
                     label.setText("Down");
-                    paddleY2 += SIZE;
+                    paddleY += SIZE;
                     repaint();
                     break;
             }
