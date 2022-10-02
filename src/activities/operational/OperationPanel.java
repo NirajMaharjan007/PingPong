@@ -190,7 +190,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         public Controller() {
             setTitle("Controller");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+            setJMenuBar(new FrameMenuBar());
             control.setEditable(false);
 
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
