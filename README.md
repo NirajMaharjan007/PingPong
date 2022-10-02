@@ -19,14 +19,15 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 ## Problems not solved
 
-*Note:* Score Board doesnot works and no reset
-- If run == false, then doesnot works
-- requries to re run the programme
-- no seperate two inputs 
+*Note:* Score Board doesn't works and no reset
+- If run == false, then doesn't works
+- requires to re run the programme
+- no separate two inputs 
 
 ## Solved Problems
 - collision work properly but has litter bugs 
 - Playable
+- can Restart if out of bounds
 
 ## This is a Ping-Pong Java Test
 
