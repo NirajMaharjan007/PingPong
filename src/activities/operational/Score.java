@@ -20,6 +20,7 @@ public class Score {
 
     public void getBallPositionX(int ballPosX) {
         this.ballPosX = ballPosX;
+        System.out.println(ballPosX);
     }
 
     public void drawScore(Graphics g) {
@@ -34,9 +35,11 @@ public class Score {
 
         g.drawString(str1, screen_width / 10, screen_height / 20);
         g.drawString(str2, screen_width - (12 * size), screen_height / 20);
+
+        setScore();
     }
 
-    public void setScore() {
+    private void setScore() {
         if (ballPosX < 0)
             score1++;
 
