@@ -11,7 +11,7 @@ public class OperationPanel extends JPanel implements ActionListener {
 
     public final static int SIZE = 20;
 
-    public static int ballPosX = 5 * SIZE, ballPosY = 5 * SIZE;
+    public static int ballPosX = 10 * SIZE, ballPosY = 10 * SIZE;
 
     private int ballDirX = -5, ballDirY = -4;
 
@@ -93,18 +93,19 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     protected void moveBall() {
-        // System.out.println("Ball POSITION X: " + ballPosX + ", Y: " + ballPosY);
         ballPosX += ballDirX;
         ballPosY += ballDirY;
 
-        // System.out.println(score1 + " and " + score2);
-
         if (ballPosX < 0) {
-            run = false;
+            // run = false;
+            restart();
+
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            run = false;
+            // run = false;
+            restart();
+
         }
 
         if (ballPosY < 0)
@@ -113,6 +114,14 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (ballPosY > (SCREEN_WIDTH - SIZE))
             ballDirY = -ballDirY;
 
+    }
+
+    private void restart() {
+        ballPosX = SCREEN_HEIGHT / 2;
+        ballPosY = SCREEN_WIDTH / 2;
+        ballDirX = -ballDirX;
+        ballDirY = -ballDirY;
+        // run = true;
     }
 
     @Override
