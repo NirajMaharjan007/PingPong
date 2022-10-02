@@ -22,7 +22,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 - If run == false, then doesn't works
 - requires to re run the programme
 - no separate two inputs 
-- has Bugs while colliding Paddles
+- has Bugs,if the ball is collided with Paddles
 - After game over requires to re-run the programme
 
 ## Solved Problems
