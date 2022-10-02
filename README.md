@@ -19,16 +19,18 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 ## Problems not solved
 
-*Note:* Score Board doesn't works and no reset
 - If run == false, then doesn't works
 - requires to re run the programme
 - no separate two inputs 
 - has Bugs while colliding Paddles
+- After game over requires to re-run the programme
 
 ## Solved Problems
+
 - collision works
 - Playable
 - can Restart if out of bounds and Space to continue
+- Score board works
 
 ## This is a Ping-Pong Java Test
 
