@@ -30,7 +30,7 @@ public class OperationPanel extends JPanel implements ActionListener {
         setLayout(new GridLayout());
         new Controller();
         score = new Score(SCREEN_WIDTH, SCREEN_HEIGHT);
-        score.getBallPositonX(ballPosX);
+        score.getBallPositionX(ballPosX);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Score {
         this.screen_height = height;
     }
 
-    public void getBallPositonX(int ballPosX) {
+    public void getBallPositionX(int ballPosX) {
         this.ballPosX = ballPosX;
     }
 
