@@ -54,7 +54,7 @@ public class OperationPanel extends JPanel implements ActionListener {
     protected void start() {
         run = true;
         timer = new Timer(15, this);
-        timer.setRepeats(run);
+        timer.setRepeats(true);
         timer.start();
     }
 
@@ -84,10 +84,10 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (paddleY2 < minY)
             paddleY2 = minY;
 
-        if (paddle.intersects(ball))
+        if (paddle.intersects(ball) || ball.intersects(paddle))
             ballDirX = -ballDirX;
 
-        if (paddle2.intersects(ball))
+        if (paddle2.intersects(ball) || ball.intersects(paddle2))
             ballDirX = -ballDirX;
 
     }
