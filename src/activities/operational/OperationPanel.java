@@ -146,14 +146,14 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosY += ballDirY;
 
         if (ballPosX < 0) {
-            timer.stop();
             restart();
+            timer.stop();
             score2++;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            timer.stop();
             restart();
+            timer.stop();
             score1++;
         }
 
