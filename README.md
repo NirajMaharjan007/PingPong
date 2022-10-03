@@ -24,6 +24,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 - no separate two inputs 
 - has Bugs,if the ball is collided with Paddles
 - After game over requires to re-run the programme
+- Menu bar setting doesnot work
 
 ## Solved Problems
 
