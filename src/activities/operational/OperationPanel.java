@@ -133,10 +133,10 @@ public class OperationPanel extends JPanel implements ActionListener {
         if (paddleY2 < minY)
             paddleY2 = minY;
 
-        if (paddle.intersects(ball) || ball.intersects(paddle))
+        if (paddle.intersects(ball) && ball.intersects(paddle))
             ballDirX = -ballDirX;
 
-        if (paddle2.intersects(ball) || ball.intersects(paddle2))
+        if (paddle2.intersects(ball) && ball.intersects(paddle2))
             ballDirX = -ballDirX;
 
     }
