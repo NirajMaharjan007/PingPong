@@ -100,20 +100,26 @@ public class OperationPanel extends JPanel implements ActionListener {
             g.setFont(font);
             g.setColor(Color.RED);
             g.drawString(title, 210, (SCREEN_HEIGHT + 4 * SIZE) / 2);
-        } else {
+        } else if (score1 < score2) {
             String title = "Player Two Wins!";
             font = new Font("Helvetica", Font.PLAIN, 24);
             g.setFont(font);
             g.setColor(Color.RED);
             g.drawString(title, 210, (SCREEN_HEIGHT + 4 * SIZE) / 2);
+        } else {
+            String title = "Its draw Maybe!";
+            font = new Font("Helvetica", Font.PLAIN, 24);
+            g.setFont(font);
+            g.setColor(Color.RED);
+            g.drawString(title, 215, (SCREEN_HEIGHT + 4 * SIZE) / 2);
         }
     }
 
     protected void checkCollision() {
         int maxY = 440, minY = 0;
         Rectangle ball = new Rectangle(ballPosX, ballPosY, SIZE, SIZE);
-        Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth, paddleHeight);
-        Rectangle paddle2 = new Rectangle(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth, paddleHeight);
+        Rectangle paddle = new Rectangle(2 * SIZE, paddleY, paddleWidth - 5, paddleHeight - 5);
+        Rectangle paddle2 = new Rectangle(SCREEN_HEIGHT - (3 * SIZE), paddleY2, paddleWidth - 5, paddleHeight - 5);
 
         if (paddleY > maxY)
             paddleY = maxY;
@@ -140,14 +146,12 @@ public class OperationPanel extends JPanel implements ActionListener {
         ballPosY += ballDirY;
 
         if (ballPosX < 0) {
-            // run = false;
             timer.stop();
             restart();
             score2++;
         }
 
         if (ballPosX > (SCREEN_HEIGHT - SIZE)) {
-            // run = false;
             timer.stop();
             restart();
             score1++;
@@ -161,13 +165,13 @@ public class OperationPanel extends JPanel implements ActionListener {
     }
 
     private void restart() {
-        if (ballPosX < 0) {
-            ballPosX = SCREEN_HEIGHT / 2;
+        if (ballPosX > SCREEN_WIDTH - SIZE) {
+            ballPosX = SCREEN_HEIGHT - (4 * SIZE);
             ballPosY = SCREEN_WIDTH / 2;
         }
 
-        if (ballPosX > SCREEN_WIDTH - SIZE) {
-            ballPosX = (SCREEN_HEIGHT / 2) - SIZE;
+        if (ballPosX < 0) {
+            ballPosX = 3 * SIZE;
             ballPosY = SCREEN_WIDTH / 2;
         }
         ballDirX = -ballDirX;
@@ -217,28 +221,35 @@ public class OperationPanel extends JPanel implements ActionListener {
                     timer.start();
                     break;
 
+                case KeyEvent.VK_P:
+                    label.setText("Pause");
+                    timer.stop();
+                    break;
+
+                case KeyEvent.VK_ESCAPE:
+                    label.setText("Stop");
+                    timer.start();
+                    run = false;
+                    break;
+
                 case KeyEvent.VK_UP:
                     label.setText("UP");
                     paddleY2 -= SIZE;
-                    // repaint();
                     break;
 
                 case KeyEvent.VK_DOWN:
                     label.setText("Down");
                     paddleY2 += SIZE;
-                    // repaint();
                     break;
 
                 case KeyEvent.VK_W:
                     label.setText("UP");
                     paddleY -= SIZE;
-                    // repaint();
                     break;
 
                 case KeyEvent.VK_S:
                     label.setText("Down");
                     paddleY += SIZE;
-                    // repaint();
                     break;
 
                 case KeyEvent.VK_ENTER:
